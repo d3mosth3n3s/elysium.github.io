@@ -1,0 +1,212 @@
+@import url("reset.css");
+
+body {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: rgb(255, 255, 255);
+    background-image: url("spacebgani3.gif");
+
+    background-repeat: repeat;
+    background-color: black;
+
+    font-size: larger;
+}
+
+@font-face {
+    font-family: virale;
+    src: url(virale.ttf);
+}
+
+@font-face {
+    font-family: 04B_21__;
+    src: url(04B_21__.ttf);
+}
+
+@font-face {
+    font-family: visitor1;
+    src: url(visitor1.ttf);
+}
+
+p {
+    font-family: virale;
+    padding: 5px;
+
+}
+
+#blogpost {
+    background-color: #CC33FF;
+}
+
+
+#wrapper {
+    width: 1100px;
+}
+
+#header {
+    float: left;
+    height: 100px;
+    width: 1000px;
+    background-image: url("starsbackground1.jpg");
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2px #686fc9;
+    margin: 10px;
+    border: 10px solid transparent;
+    border-image: url(imageborder1.png) 30% round;
+    border-width: 20px;
+}
+
+#navigation {
+    float: left;
+    height: 40px;
+    width: 1000px;
+    background: #FFCC33;
+    background-image: url("starsbackground1.jpg");
+    border-radius: 20px;
+    box-shadow: 0 0 10px 2px #686fc9;
+    margin: 10px;
+    border: 10px solid transparent;
+    border-image: url(imageborder1.png) 30% round;
+    border-width: 20px;
+    color: white;
+
+
+}
+
+#content {
+    float: left;
+    width: 600px;
+    background-image: url("starsbackground1.jpg");
+    border-radius: 20px;
+    box-shadow: 0 0 10px 2px #686fc9;
+    margin: 10px;
+    border: 10px solid transparent;
+    border-image: url(imageborder1.png) 30% round;
+    border-width: 20px;
+    color: white;
+    background-color: #102b6a;
+    background-blend-mode: lighten;
+}
+
+#leftcolumn {
+    background: #33CCFF;
+    width: 150px;
+    float: left;
+    background-image: url("starsbackground1.jpg");
+    border-radius: 20px;
+    box-shadow: 0 0 10px 2px #686fc9;
+    margin: 10px;
+    border: 10px solid transparent;
+    border-image: url(imageborder1.png) 30% round;
+    border-width: 20px;
+    color: white;
+
+}
+
+#rightcolumn {
+    background: #CC33FF;
+    width: 150px;
+    float: left;
+    background-image: url("starsbackground1.jpg");
+    border-radius: 20px;
+    box-shadow: 0 0 10px 2px #686fc9;
+    margin: 10px;
+    border: 10px solid transparent;
+    border-image: url(imageborder1.png) 30% round;
+    border-width: 20px;
+    color: white;
+}
+
+#footer {
+    height: 40px;
+    width: 1000px;
+    background: #33FF66;
+    clear: both;
+    background-image: url("starsbackground1.jpg");
+    border-radius: 20px;
+    box-shadow: 0 0 10px 2px #686fc9;
+    margin: 10px;
+    border: 10px solid transparent;
+    border-image: url(imageborder1.png) 30% round;
+    border-width: 20px;
+    color: white;
+
+}
+
+#elysium {
+    float: left;
+    padding: 10px;
+    margin-left: 15%;
+
+
+}
+
+#button {
+    padding-left: 15px;
+    width: 43px;
+    transition: width 1s;
+}
+
+
+
+#button:hover {
+    width: 5%;
+    height: auto;
+}
+
+#blogtitle {
+    position: relative;
+    float: left;
+    padding: 10px;
+    margin-left: 15%;
+
+}
+
+* {
+    cursor: url(https://cur.cursors-4u.net/games/gam-11/gam1090.ani), url(https://cur.cursors-4u.net/games/gam-11/gam1090.png), auto !important;
+}
+
+
+hr {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 1) 70%);
+    height: 5px;
+    border-image: url(imageborder1.png) 40% round;
+    border-radius: 10px;
+}
+
+#aboutbox {
+    border-style: double;
+    border-radius: 3px;
+    border-color: rgb(255, 255, 255);
+    padding: 5px;
+    background-color: #7f7d91;
+    box-shadow: inset 0 0 10px #292929;
+    background-image: url(comp021blu.png);
+}
+
+#abouttxt1 {
+    margin-top: 1px;
+    padding: 10px;
+}
+
+#icon1 {
+    border-style: double;
+    float: left;
+    box-shadow: 0 0 5px #f3f3f3;
+    margin: 5px;
+    margin-top: 8px;
+    margin-left: 8px;
+}
+
+#abouttxt2 {
+    border-style: double;
+    box-shadow: 0 0 10px #292929;
+    margin: 1px;
+    font-family: visitor1;
+    font-size: 12px;
+
+}
+
+#buttons {
+    margin: auto;
+}
