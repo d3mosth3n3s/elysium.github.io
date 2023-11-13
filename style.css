@@ -1,0 +1,519 @@
+/* user styles */
+
+/* styles are what change the color and sizes of stuff on your site. */
+
+/* these are variables that are being used in the code
+    these tended to confuse some people, so I only kept 
+    the images as variables */
+
+:root {
+    --header-image: url('elysiumtitle2.png');
+    --body-bg-image: url('stars3.gif');
+
+    /* colors */
+    --content: #252d6e;
+}
+
+/* if you have the URL of a font, you can set it below */
+/* feel free to delete this if it's not your vibe */
+
+/* this seems like a lot for just one font and I would have to agree 
+    but I wanted to include an example of how to include a custom font.
+    If you download a font file you can upload it onto your Neocities
+    and then link it! Many fonts have separate files for each style
+    (bold, italic, etc. T_T) which is why there are so many!
+    
+    */
+
+@font-face {
+    font-family: Pixel Operator1;
+    src: url('PixelOperator.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: Pixel Operator;
+    src: url('TT Octosquares Trial Expanded DemiBold.ttf');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Pixel Operator;
+    src: url('https://sadhost.neocities.org/fonts/Nunito-Italic.ttf');
+    font-style: italic;
+}
+
+@font-face {
+    font-family: Pixel Operator;
+    src: url('https://sadhost.neocities.org/fonts/Nunito-BoldItalic.ttf');
+    font-style: italic;
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: Four Bee;
+    src: url('04B_21__.TTF') format('truetype');
+}
+
+body {
+    font-family: 'Pixel Operator', sans-serif;
+    font-size: 20px;
+    margin: 0;
+    background-color: #08031A;
+    /* you can delete the line below if you'd prefer to not use an image */
+    background-size: 200px;
+    color: #eaf2ff;
+    background-image: var(--body-bg-image);
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+/* below this line is CSS for the layout */
+
+/* this is a CSS comment
+    to uncomment a line of CSS, remove the * and the /
+    before and after the text */
+
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
+
+
+#blog {
+    background-color: rgb(7, 18, 61);
+    padding: 10px;
+    padding-left: 30px;
+    border: 1px solid #88b8ff;
+}
+
+#art {
+    width: 400px;
+    height: auto;
+}
+
+/* the "container" is what wraps your entire website */
+/* if you want something (like the header) to be Wider than
+    the other elements, you will need to move that div outside
+    of the container */
+#container {
+    max-width: 900px;
+    /* this is the width of your layout! */
+    /* if you change the above value, scroll to the bottom
+      and change the media query according to the comment! */
+    margin: 0 auto;
+
+    /* this centers the entire page */
+}
+
+/* the area below is for all links on your page
+    EXCEPT for the navigation */
+#container a {
+    color: #6464f5;
+    font-weight: bold;
+
+    /* if you want to remove the underline
+      you can add a line below here that says:
+      text-decoration:none; */
+}
+
+#header {
+    width: 100%;
+    background-color: #01063f00;
+    /* header color here! */
+    height: 150px;
+    /* this is only for a background image! */
+    /* if you want to put images IN the header, 
+      you can add them directly to the <div id="header"></div> element! */
+    background-image: var(--header-image);
+    background-size: 100%;
+    margin-top: 10px;
+}
+
+#scrollbox {
+    height: 200px;
+    width: 150px;
+    overflow: auto;
+    background-color: #090b2d;
+    border: 1px solid #88b8ff;
+    padding: 10px;
+    padding-top: 1px;
+}
+
+#scrollbox2 {
+    height: 110px;
+    width: 150px;
+    overflow: auto;
+    background-color: #7d7fb4;
+    border: 1px solid #88b8ff;
+    padding: 10px;
+    padding-top: 0px;
+    border-style: double;
+    border-radius: 3px;
+    border-color: rgb(255, 255, 255);
+    box-shadow: inset 0 0 10px #292929;
+}
+
+#nonscrollbox {
+    height: 100px;
+    width: 150px;
+
+    background-color: #7d7fb4;
+    border: 1px solid #88b8ff;
+    padding: 10px;
+    padding-top: 0px;
+    border-style: double;
+    border-radius: 3px;
+    border-color: rgb(255, 255, 255);
+    box-shadow: inset 0 0 10px #292929;
+}
+
+/* navigation section!! */
+#navbar {
+    height: 50px;
+    background-color: #091e71;
+    background-image: url('739de0pcezbyl.jpg');
+    /* navbar color */
+    width: 100%;
+    border: 10px solid transparent;
+    border-image: url('imageborder1.png') 30% round;
+    border-width: 10px;
+
+}
+
+#navbar ul {
+    display: flex;
+    margin: 6px;
+    padding: 0;
+    list-style-type: none;
+    justify-content: space-evenly;
+
+
+
+}
+
+
+#navicon {
+    display: inline;
+    background-image: url('c06b5a81.gif');
+    /* Replace with the path to your home icon image */
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 20px;
+    background-size: 10px;
+    margin-right: 100px;
+    /* Adjust the padding to create space for the image */
+}
+
+
+/* navigation links*/
+#navbar ul li a {
+    display: flex;
+    color: #d8edff;
+    /* navbar text color */
+    font-weight: 900;
+    font-size: 12px;
+    text-decoration: none;
+    transition: width 1s;
+    text-shadow: 0 0 10px 2px #bec1e4;
+    border: 1px solid #88b8ff;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(28, 9, 83);
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px 3px rgba(110, 151, 255, 0.9);
+
+    /* this removes the underline */
+}
+
+#navbar ul li a.link-text {
+    flex: 1;
+    /* Fill remaining space with link text */
+    padding: 10px;
+
+
+}
+
+/* navigation link when a link is hovered over */
+#navbar ul li a:hover {
+    color: #86c6ff;
+    text-decoration: underline;
+
+
+
+}
+
+#outsource li {
+    list-style-type: circle;
+    font-family: Pixel Operator1;
+}
+
+#bookmarklink a {
+    font-family: Pixel Operator1;
+    color: #6ee9ff;
+    /* navbar text color */
+
+    font-size: 20px;
+    text-decoration: none;
+    transition: width 1s;
+    text-shadow: 0 0 10px 2px #bec1e4;
+
+    /* this removes the underline */
+}
+
+/* navigation link when a link is hovered over */
+#bookmarklink a:hover {
+    color: #f986ff;
+    text-decoration: underline;
+
+
+
+}
+
+
+
+
+/*#aboutbox {
+    border-style: double;
+    border-radius: 3px;
+    border-color: rgb(255, 255, 255);
+    padding: 5px;
+    background-color: #7f7d91;
+    box-shadow: inset 0 0 10px #292929;
+    background-image: url(comp021blu.png);
+}
+*/
+
+
+#aboutbox {
+    border-style: double;
+    border-radius: 3px;
+    border-color: rgb(255, 255, 255);
+    padding: 1px;
+    background-color: #6d7398;
+    box-shadow: inset 0 0 10px #292929;
+    height: 67px;
+    /* Adjust the width as needed */
+}
+
+
+
+#icon1 {
+    float: left;
+    width: 40px;
+    height: auto;
+    margin: 10px;
+    border-style: double;
+    border-radius: 3px;
+    border-color: rgb(255, 255, 255);
+    /* Adjust the margin as needed */
+}
+
+#abouttxt2 {
+    float: left;
+    font-family: 'Four Bee';
+    font-size: 10px;
+}
+
+#abouttxt3 {
+    float: left;
+    font-family: 'Four Bee';
+    font-size: 13px;
+}
+
+#flex {
+    display: flex;
+}
+
+/* this colors BOTH sidebars
+    if you want to style them separately,
+    create styles for #leftSidebar and #rightSidebar */
+aside {
+    background-color: #040e35;
+    background-image: url('bck-grid.gif');
+    width: 200px;
+    padding: 10px;
+    font-size: smaller;
+    border: 10px solid transparent;
+    border-image: url('imageborder1.png') 30% round;
+    border-width: 15px;
+    box-shadow: 0 0 10px 2px #a9c7ff;
+    border-radius: 20px;
+    /* this makes the sidebar text slightly smaller */
+}
+
+
+/* this is the color of the main content area,
+    between the sidebars! */
+main {
+    background-color: #084760;
+    background-blend-mode: multiply;
+    flex: 1;
+    padding: 20px;
+    order: 2;
+    border: 10px solid transparent;
+    border-image: url('imageborder1.png') 30% round;
+    border-width: 15px;
+    background-image: url('739de0pcezbyl.jpg');
+
+}
+
+/* what's this "order" stuff about??
+    allow me to explain!
+    if you're using both sidebars, the "order" value
+    tells the CSS the order in which to display them.
+    left sidebar is 1, content is 2, and right sidebar is 3! */
+
+*/ #leftSidebar {
+    order: 1;
+}
+
+#rightSidebar {
+    order: 3;
+}
+
+footer {
+    background-color: #13092D;
+    /* background color for footer */
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    text-align: center;
+    /* this centers the footer text */
+}
+
+h1,
+h2,
+h3 {
+    color: #ffffff;
+}
+
+h1 {
+    font-size: 25px;
+}
+
+strong {
+    /* this styles bold text */
+    color: #64a3f5;
+}
+
+/* this is just a cool box, it's the darker colored one */
+.box {
+    background-color: #090b2d;
+    border: 1px solid #88b8ff;
+    padding: 10px;
+}
+
+.divider {
+    border: none;
+    height: 1px;
+    background-color: white;
+    margin: 10px 0;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+/* CSS for extras */
+
+#topBar {
+    width: 100%;
+    height: 30px;
+    padding: 10px;
+    font-size: smaller;
+    background-color: #13092D;
+
+}
+
+#buttonsection {
+    display: flex;
+    justify-content: center;
+}
+
+/* Start https://www.cursors-4u.com */
+* {
+    cursor: url(https://cur.cursors-4u.net/nature/nat-10/nat949.ani), url(https://cur.cursors-4u.net/nature/nat-10/nat949.png), auto !important;
+}
+
+/* End https://www.cursors-4u.com */
+
+/* BELOW THIS POINT IS MEDIA QUERY */
+
+/* so you wanna change the width of your page? 
+    by default, the container width is 900px.
+    in order to keep things responsive, take your new height,
+    and then subtrack it by 100. use this new number as the 
+    "max-width" value below
+    */
+
+@media only screen and (max-width: 800px) {
+    #flex {
+        flex-wrap: wrap;
+    }
+
+    aside {
+        width: 100%;
+    }
+
+    /* the order of the items is adjusted here for responsiveness!
+      since the sidebars would be too small on a mobile device.
+      feel free to play around with the order!
+      */
+    main {
+        order: 1;
+    }
+
+    #leftSidebar {
+        order: 2;
+    }
+
+    #rightSidebar {
+        order: 3;
+    }
+
+    #navbar ul {
+        flex-wrap: wrap;
+    }
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    border-radius: 0px;
+    background-color: #9CA7DC;
+}
+
+*::-webkit-scrollbar-track:hover {
+    background-color: #B1B7C2;
+}
+
+*::-webkit-scrollbar-track:active {
+    background-color: #929EC2;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background-color: #8CB7FF;
+    border: 2px double #FFFFFF;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: #0D41A3;
+}
+
+*::-webkit-scrollbar-thumb:active {
+    background-color: #235CA3;
+}
