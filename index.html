@@ -1,95 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" type="image/x-icon" href="lainicon.png" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="wrapper">
-      <div id="header">
-        <div id="elysium">
-          <img src="elysiumtitle2.png" width="700px" height="auto" />
-        </div>
-      </div>
-      <div id="navigation">
-        <a href="index.html"> <img id="button" src="electricHOME2.gif" /> </a>
-        <a href="about.html"> <img id="button" src="electricABOUT.gif" /> </a>
-        <a href="links.html"> <img id="button" src="electricLINKS.gif" /> </a>
-        <a href="blog.html"> <img id="button" src="electricBLOG.gif" /> </a>
-      </div>
-      <div id="leftcolumn">
-        <div id="aboutbox">
-          <img id="icon1" src="lainicon.png" width="40px" height="auto" />
-          <p id="abouttxt2">AGE: 18 <br />THEY/THEM <br />INFP <br />SAG</p>
-        </div>
+<head>
+  <script src="https://unpkg.com/webamp@1.4.0/built/webamp.bundle.min.js"></script>  
+  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="3d-blue-star-icon-3d-holiday-element-png.webp" type="image/gif" >
+    <title>Home</title>
+    <script type="text/javascript">
+        // <![CDATA[
+        var colours=new Array("#a6f", "#60f", "#60f", "#a6f", "#ccc"); // colours for top, right, bottom and left borders and background of bubbles
+        var bubbles=66; // maximum number of bubbles on screen
+        var over_or_under="over"; // set to "over" for bubbles to always be on top, or "under" to allow them to float behind other objects
+        
+        /****************************
+        * JavaScript Bubble Cursor  *
+        *(c)2010-13 mf2fm web-design*
+        *  http://www.mf2fm.com/rv  *
+        * DON'T EDIT BELOW THIS BOX *
+        ****************************/
+        var x=ox=400;
+        var y=oy=300;
+        var swide=800;
+        var shigh=600;
+        var sleft=sdown=0;
+        var bubb=new Array();
+        var bubbx=new Array();
+        var bubby=new Array();
+        var bubbs=new Array();
+        var sploosh=false;
+        
+        function addLoadEvent(funky) {
+          var oldonload=window.onload;
+          if (typeof(oldonload)!='function') window.onload=funky;
+          else window.onload=function() {
+            if (oldonload) oldonload();
+            funky();
+          }
+        }
+        
+        addLoadEvent(buble);
+        
+        function buble() { if (document.getElementById) {
+          var i, rats, div;
+          for (i=0; i<bubbles; i++) {
+            rats=createDiv("3px", "3px");
+            rats.style.visibility="hidden";
+            rats.style.zIndex=(over_or_under=="over")?"1001":"0";
+        
+            div=createDiv("auto", "auto");
+            rats.appendChild(div);
+            div=div.style;
+            div.top="1px";
+            div.left="0px";
+            div.bottom="1px";
+            div.right="0px";
+            div.borderLeft="1px solid "+colours[3];
+            div.borderRight="1px solid "+colours[1];
+        
+            div=createDiv("auto", "auto");
+            rats.appendChild(div);
+            div=div.style;
+            div.top="0px";
+            div.left="1px";
+            div.right="1px";
+            div.bottom="0px"
+            div.borderTop="1px solid "+colours[0];
+            div.borderBottom="1px solid "+colours[2];
+        
+            div=createDiv("auto", "auto");
+            rats.appendChild(div);
+            div=div.style;
+            div.left="1px";
+            div.right="1px";
+            div.bottom="1px";
+            div.top="1px";
+            div.backgroundColor=colours[4];
+            if (navigator.appName=="Microsoft Internet Explorer") div.filter="alpha(opacity=50)";
+            else div.opacity=0.5;
+            document.body.appendChild(rats);
+            bubb[i]=rats.style;
+          }
+          set_scroll();
+          set_width();
+          bubble();
+        }}
+        
+        function bubble() {
+          var c;
+          if (Math.abs(x-ox)>1 || Math.abs(y-oy)>1) {
+            ox=x;
+            oy=y;
+            for (c=0; c<bubbles; c++) if (!bubby[c]) {
+              bubb[c].left=(bubbx[c]=x)+"px";
+              bubb[c].top=(bubby[c]=y-3)+"px";
+              bubb[c].width="3px";
+              bubb[c].height="3px"
+              bubb[c].visibility="visible";
+              bubbs[c]=3;
+              break;
+            }
+          }
+          for (c=0; c<bubbles; c++) if (bubby[c]) update_bubb(c);
+          setTimeout("bubble()", 40);
+        }
+        
+        document.onmousedown=splash;
+        document.onmouseup=function(){clearTimeout(sploosh);};
+        
+        function splash() {
+          ox=-1;
+          oy=-1;
+          sploosh=setTimeout('splash()', 100);
+        }
+        
+        function update_bubb(i) {
+          if (bubby[i]) {
+            bubby[i]-=bubbs[i]/2+i%2;
+            bubbx[i]+=(i%5-2)/5;
+            if (bubby[i]>sdown && bubbx[i]>sleft && bubbx[i]<sleft+swide+bubbs[i]) {
+              if (Math.random()<bubbs[i]/shigh*2 && bubbs[i]++<8) {
+                bubb[i].width=bubbs[i]+"px";
+                bubb[i].height=bubbs[i]+"px";
+              }
+              bubb[i].top=bubby[i]+"px";
+              bubb[i].left=bubbx[i]+"px";
+            }
+            else {
+              bubb[i].visibility="hidden";
+              bubby[i]=0;
+              return;
+            }
+          }
+        }
+        
+        document.onmousemove=mouse;
+        function mouse(e) {
+          if (e) {
+            y=e.pageY;
+            x=e.pageX;
+          }
+          else {
+            set_scroll();
+            y=event.y+sdown;
+            x=event.x+sleft;
+          }
+        }
+        
+        window.onresize=set_width;
+        function set_width() {
+          var sw_min=999999;
+          var sh_min=999999;
+          if (document.documentElement && document.documentElement.clientWidth) {
+            if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+            if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+          }
+          if (typeof(self.innerWidth)=='number' && self.innerWidth) {
+            if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+            if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+          }
+          if (document.body.clientWidth) {
+            if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+            if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+          }
+          if (sw_min==999999 || sh_min==999999) {
+            sw_min=800;
+            sh_min=600;
+          }
+          swide=sw_min;
+          shigh=sh_min;
+        }
+        
+        window.onscroll=set_scroll;
+        function set_scroll() {
+          if (typeof(self.pageYOffset)=='number') {
+            sdown=self.pageYOffset;
+            sleft=self.pageXOffset;
+          }
+          else if (document.body && (document.body.scrollTop || document.body.scrollLeft)) {
+            sdown=document.body.scrollTop;
+            sleft=document.body.scrollLeft;
+          }
+          else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+            sleft=document.documentElement.scrollLeft;
+            sdown=document.documentElement.scrollTop;
+          }
+          else {
+            sdown=0;
+            sleft=0;
+          }
+        }
+        
+        function createDiv(height, width) {
+          var div=document.createElement("div");
+          div.style.position="absolute";
+          div.style.height=height;
+          div.style.width=width;
+          div.style.overflow="hidden";
+          div.style.backgroundColor="transparent";
+          return (div);
+        }
+        // ]]>
+        </script>
+</head>
+<body>
+    
+        <div id="container"><div id="header" style="height: 120px;"></div>
+            <div id="headerArea">
+                
+                <nav id="navbar" style="margin-bottom: 10px;">
+                    <ul>
+                        <!-- <a href="index.html"> <img id="button" src="cooltext435973786670218.png" height="30"/> </a>
+                        <a href="links.html"> <img id="button" src="cooltext435973792506357.png" height="30"/> </a>
+                        <a href="blog.html"> <img id="button" src="cooltext435973795305243.png" height="30"/> </a>
+                        <a href="art.html"> <img id="button" src="cooltext435973817220999.png" height="30"/> </a>
+                        <a href="what.html"> <img id="button" src="cooltext435973824132163.png" height="30"/> </a> -->
+                        <img src="ast010.gif" alt="" height="20">
+                        <li><a href="index.html"><span class="link-text">HOME</span></a></li>
+                        <img src="ast010.gif" alt="" height="20">
+                        <li><a href="art.html"> <span class="link-text">ART</span></a></li>
+                        <img src="ast010.gif" alt="" height="20">
+                        <li><a href="blog.html"> <span class="link-text">BLOG</span></a></li>
+                        <img src="ast010.gif" alt="" height="20">
+                        <li><a href="links.html"> <span class="link-text">LINKS</span></a></li>
+                        <img src="ast010.gif" alt="" height="20">
+                        <li><a href="what.html"> <span class="link-text">CUBBY</span></a></li>
+                        <img src="ast010.gif" alt="" height="20">
+                      </ul>
+                </nav>
+            </div>
 
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
-          odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla
-          quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent
-          mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
-          Vestibulum lacinia arcu eget nulla.
-        </p>
-        <script
-          type="text/javascript"
-          src="//counter.websiteout.net/js/6/0/0/0"
-        ></script>
-      </div>
-      <div id="content">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
-          odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla
-          quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent
-          mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
-          Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad
-          litora torquent per conubia nostra, per inceptos himenaeos. Curabitur
-          sodales ligula in libero. Sed dignissim lacinia nunc.
-        </p>
-        <p>
-          Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam,
-          a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla.
-          Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet.
-          Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu
-          magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna.
-          Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at
-          interdum magna augue eget diam. Vestibulum ante ipsum primis in
-          faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia
-          molestie dui. Praesent blandit dolor.
-        </p>
-        <p>
-          Sed non quam. In vel mi sit amet augue congue elementum. Morbi in
-          ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec,
-          blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus.
-          Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui
-          quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia
-          sollicitudin massa. Cras metus. Sed aliquet risus a tortor. Integer id
-          quam.
-        </p>
-        <div id="buttons">
-          <img src="wii.png" />
-          <img src="lain.gif" />
-          <img src="vscbutton.gif" />
-          <img src="thirdimpact.png" />
-          <img src="css.png" />
-          <img src="powernavibadge.png" />
+            <div id="flex">
+                
+                <main>
+                  
+                  <img src="New Project (5).png"  class="center" alt="">  
+                  
+                    <p><strong>Here's what's happening,</strong></p>
+                    <p>Being born on the other side of the millennium means I've missed out on most of Web 2.0. As an exercise in learning front-end development and reminiscing on the past I never knew, I've put together this website. </p>
+                    <p>I'll also include thoughts and ideas under the Blog section. I'm not sure how personal I'll get, or how explicit I'll get, depending on who will see this website. If I can remain anonymous, there shouldn't be anything holding me back. However, first I need to figure out how to implement a blogging widget...</p>
+                    <p>This should be an interesting summer project, and I'd like to have it as a portfolio piece, but based on the possible future content, it might be better to leave it as a personal project.</p>
+                    <p>That's all I've got to say, going to get back to it now.</p>
+                    <p>- Demons These</p>
+                    <div id="buttonsection">
+                      <img src="010e31e1.jpg" alt="">
+                      <img src="f8d543db.png" alt="">
+                      <img src="04b4fafb.gif" alt="">
+                      <img src="db034078.png" alt="">
+                    </div>
+                </main>
+                
+            <aside id="rightSidebar" style="margin-left: 10px;">
+            
+            <img src="New Project (6).png"  height='40px' alt="">
+            <div id="nonscrollbox">
+              
+
+              <p>FEELING: <br /><a href="https://www.imood.com/users/d3mosth3n3s"><img src="https://moods.imood.com/display/uname-d3mosth3n3s/fg-FFFFFF/bg-00008B/trans-1/imood.gif" alt="The current mood of d3mosth3n3s at www.imood.com" border="0"></a><br />FOOD: <br />MAC N CHEESE <br /></p></p>
+              </div>
+              <div style="padding: 10px;"></div>
+            
+              <img src="New Project (2).png"  height='40px' alt="">
+              <div id="scrollbox">
+                
+
+                <p>5.21.2023 - laying the foundations</p>
+                </div>
+                <div style="padding: 10px;"></div>
+                <img src="New Project (4).png"  height='40px' alt="">
+                <div id="scrollbox2">
+                <p>to do:</br>✭ sleep</br>✭ sleep</br>✭ sleep</br>✭ sleep</br>✭ sleep</p>
+              </div>
+          </aside>
+            <aside id="leftSidebar" style="margin-right: 10px;">
+                <div id="aboutbox">
+                    <img id="icon1" src="lainicon.png" width="40px" height="auto" />
+                    <p id="abouttxt2">AGE: ⋆｡ﾟ☁︎｡⋆｡☾ <br />THEY/THEM <br />INFP <br />SAG</p>
+                </div>
+                <hr class="divider">
+                <img src="oie_usGGlmGZ0AFu.gif" alt="" width="150px">
+                <hr class="divider">
+                <img src="23.gif" alt="">
+                <img src="2storms.gif" alt="">
+                <img src="763367in0vgpq70t.gif" alt="">
+                <img src="7ciig8c.gif" alt="">
+                
+                <img src="blinkies/1640948qevkuwj05j.gif" alt="">
+                <img src="blinkies/2157583s630a07w0q.gif" alt="">
+                <img src="blinkies/blinkiesCafe-bG.gif" alt="">
+                <img src="blinkies/blinkiesCafe-Fn.gif" alt="">
+                <div  align='center'><a href='https://www.free-website-hit-counter.com'><img src='https://www.free-website-hit-counter.com/c.php?d=9&id=150805&s=55' border='0'   alt=''></a><br / ><small><a href='https://www.free-website-hit-counter.com' title="Free Website Hit Counter"></a></small></div>
+                
+                <div style="width:40px; height:40px; position:absolute; bottom:0px; left:0px;">
+                  <div id="winamp-container"></div>
+                    <script>
+                const Winamp = window.Webamp;
+                // All configuration options are optional.
+                const webamp = new Webamp({
+                    // Optional.
+                    initialTracks: [
+                        {
+                            metaData: {
+                                artist: "Capsule",
+                                title: "JUMPER",
+                            },
+                            url: "CAPSULE - Jumper.mp3",
+                        }, {
+                            metaData: {
+                                artist: "",
+                                title: "",
+                            },
+                            url: "desert sand feels warm at night - 新世界の弟子たち - 02 彼に続け、一人の彼のために.mp3",
+                        },
+                        {
+                            metaData: {
+                                artist: "Daft Punk",
+                                title: "Aerodynamite",
+                            },
+                            url: "yt1s.com - Daft Punk  Aerodynamite.mp3",
+                        },
+                      ],
+                    initialSkin: {
+                        url: "GEN.WSZ"
+                    },
+                });
+                webamp.renderWhenReady(document.getElementById('winamp-container'));
+                </script>
+                </div>
+            </aside></div>
+            <footer id="footer" style="margin-top: 10px;">hiii</footer>
         </div>
-      </div>
-      <div id="rightcolumn">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
-          odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla
-          quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent
-          mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
-          Vestibulum lacinia arcu eget nulla.
-        </p>
-      </div>
-      <div id="footer">
-        <p>This is the Footer</p>
-      </div>
-    </div>
-  </body>
+        <!-- THIS IS THE CSS !-->
+        
+
+    
+</body>
 </html>
